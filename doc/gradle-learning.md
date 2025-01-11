@@ -58,3 +58,27 @@ allprojects {
 Maven 和 Gradle 存放依赖目录结构的方式不一样的，所以 Maven 和 Gradle 是不用共用同一个仓库 jar 包，即使两者配置的仓库目录是一样的。
 
 其中 Gradle 存放 jar 包的地址为 `GRADLE_USER_HOME/caches` 目录下。
+
+## Wrapper 包装器
+
+Wrapper 就是 Gradle 的一层包装，用来解决不同项目中 Gradle 版本不一致的问题，官方推荐使用 Wrapper 来构建我们的项目。
+
+项目目录下脚本文件就是用来执行 Wrapper 的脚本：`gradlew` 和 `gradlew.bat`。
+
+`./gradlew build` 的命令执行流程 ：
+
+1. 读取 gradle 目录下的 `gradle-wrapper.properties` 文件配置信息；
+2. 将指定的 gradle 版本下载到 `GRADLE_USER_HOME/wrapper/dists` 目录下；
+3. 构建本地缓存到目录 `GRADLE_USER_HOME/caches`，相当于本地仓库。 
+
+`gradle-wrapper.properties` 目录解释：
+
+| 字段名              | 说明                                                          |
+| ---------------- | ----------------------------------------------------------- |
+| DistributionBase | Gradle 存储的基本目录, 通常设置为 `GRADLE_USER_HOME` 或 `PROJECT`        |
+| DistributionPath | Gradle 解压后的 Gradle 存储目录，通常为 `wrapper/dists`                 |
+| DistributionUrl  | 下载 gradle 的 url 地址                                          |
+| ZipStoreBase     | 存储 Gradle zip 文件的基本目录, 通常设置为 `GRADLE_USER_HOME` 或 `PROJECT` |
+| ZipStorePath     | 存储 Gradle zip 文件的路径，通常为 `wrapper/dists`                     |
+
+
