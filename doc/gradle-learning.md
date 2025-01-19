@@ -1,3 +1,6 @@
+# 文档
+
+[The Apache Groovy programming language - Groovy reference documentation](https://groovy-lang.org/single-page-documentation.html)
 # Why
 
 未来趋势，很多开源项目基于 gradle 构建，重要是公司需要就学呗。
@@ -109,3 +112,13 @@ Groovy 也是运行在 JVM 上的脚本语言，可以很好与 Java 代码和�
 
 Groovy 会自动判断数据类型，自动进行**类型转换**。
 
+> **Groovy 类与 Java 类的区别**
+
+1. 没有可见修饰符的类或方法自动是 public；
+2. 没有可见修饰符的字段自动转换为属性，不需要显式的 getter 和 setter 方法；
+3. 如果属性声明为 final，则不会生成 setter；
+4. 脚本自动生成的类名就是定义脚本的文件名。
+
+> **集合**
+
+Groovy 可以将不同基本类型添加到同一个集合中。
