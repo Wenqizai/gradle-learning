@@ -80,5 +80,32 @@ Wrapper 就是 Gradle 的一层包装，用来解决不同项目中 Gradle 版�
 | DistributionUrl  | 下载 gradle 的 url 地址                                          |
 | ZipStoreBase     | 存储 Gradle zip 文件的基本目录, 通常设置为 `GRADLE_USER_HOME` 或 `PROJECT` |
 | ZipStorePath     | 存储 Gradle zip 文件的路径，通常为 `wrapper/dists`                     |
+# Groovy
 
+Groovy 也是运行在 JVM 上的脚本语言，可以很好与 Java 代码和相关库进行交互操作，兼容 Java 语法。相对于 Java 做脚本，Groovy 代码量更少，更好支持动态类型转换和函数式编程，支持 DSL 语法。
+
+## 安装
+
+下载地址：[The Apache Groovy programming language - Download](https://groovy.apache.org/download.html#distro)
+配置环境变量： `GROOVY_HOME` ，path = `%GROOVY_HOME%/bin`
+验证命令：`groovy -v`
+
+## 语法
+
+1. Groovy 作为面向对象时，可定义类。作为脚本语言时，可以不定义类；
+2. 脚本定义和类定义可以在同一个文件中使用；
+3. Groovy 使用 `def` 定义变量，方法。不建议使用具体的数据类型，如 Java 的基本数据类型、包装数据类型、String 等。
+4. 注释语法与 Java 一致，行末尾的 `;` 可以忽略，默认换行作为结束符；
+5. 默认类、方法、字段都是 public 修饰的；
+6. 属性赋值
+7. 方法
+	1. 声明时：可忽略参数类型、返回值类型，return 关键字（默认最后一句的返回值作为方法返回值）；
+	2. 调用时，可忽略 `()`。
+8. 基本类型也是对象，可直接调用对象的方法；
+9. 字符串
+	1. 单引号：作为字符串常量使用；
+	2. 双引号：可引用变量 `${}`，有运算能力；
+	3. 三引号：模板字符串，支持换行。 
+
+Groovy 会自动判断数据类型，自动进行**类型转换**。
 
