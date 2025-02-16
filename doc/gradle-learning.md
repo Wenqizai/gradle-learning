@@ -176,3 +176,14 @@ test {
 gradle build -x test
 gradle build --exclude-task test
 ```
+
+# 生命周期
+
+[Gradle基础 构建生命周期和Hook技术对于初学者来说，面对各种各样的Gradle构建脚本，想要梳理它的构建流程 - 掘金](https://juejin.cn/post/6844903607679057934)
+
+# Settings 文件
+
+Settings 文件主要是在*项目初始化*阶段确定引入哪些工程需要加入到项目构建中，为构建项目工程树做准备。
+
+Gradle 的工程树，类似与 maven 的 project 与 mudle。开发人员需要关注 `settings.gradle` 文件，这样我们可以掌握整个 project 的全貌。
+

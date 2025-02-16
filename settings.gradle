@@ -1,2 +1,9 @@
 rootProject.name = 'gradle-learning'
+include 'root'
+include 'root:subproject01'
+findProject(':root:subproject01')?.name = 'subproject01'
+include 'root:subproject02'
+findProject(':root:subproject02')?.name = 'subproject02'
+include 'root:subproject03'
+findProject(':root:subproject03')?.name = 'subproject03'
 
