@@ -17,3 +17,9 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+task subproject03Hello {
+    doLast {
+        println "subproject03 Hello World"
+    }
+}

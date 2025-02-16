@@ -17,3 +17,9 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+task rootHello {
+    doLast {
+        println "root Hello World"
+    }
+}

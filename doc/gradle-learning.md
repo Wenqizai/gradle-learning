@@ -187,3 +187,89 @@ Settings 文件主要是在*项目初始化*阶段确定引入哪些工程需要
 
 Gradle 的工程树，类似与 maven 的 project 与 mudle。开发人员需要关注 `settings.gradle` 文件，这样我们可以掌握整个 project 的全貌。
 
+# Task 
+
+项目实质是 Task 对象的集合，一个 Task 表示一个逻辑上较为独立的执行过程，比如编译、拷贝文件、打包 Jar 文件，甚至是一个执行命令操作。
+
+## Task 行为
+
+`doFirst` 和 `doLast` 在任务执行阶段执行。可以在 Task 内部定义，也可以在 Task 外部定义。
+
+**任务执行顺序**
+
+Task 维护一个双向链表，初始状态：doFirst -> action -> doLast，执行顺序也是从左到右。当我们不断添加任务时，列表就维护成以下状态。
+
+`doFirst2 -> doFirst1 -> action1 -> doLast1 -> doLast2`
+
+由此可以，doFirst 后添加先执行，doLast 后添加后执行。
+
+## Task 依赖
+
+执行任务 task 时，先执行依赖的任务 taskA 和 taskB。
+
+```
+task A {  
+    doLast {  
+        println("taskA")  
+    }  
+}  
+  
+task B {  
+    doLast {  
+        println("taskB")  
+    }  
+}  
+```
+
+**参数依赖**
+
+```
+task C (dependsOn: ['A', 'B']) {  
+    doLast {  
+        println("taskC")  
+    }  
+}
+```
+
+**内部依赖**
+
+```
+// 内部依赖  
+task D {  
+    dependsOn = ['A', 'B']  
+    doLast {  
+        println("taskD")  
+    }  
+}
+```
+
+**外部依赖**
+
+```
+task E {  
+    doLast {  
+        println("taskE")  
+    }  
+}  
+E.dependsOn = ['A', 'B']
+```
+
+**跨项目依赖**
+
+默认执行 `build.gradle` 所在的项目，如果需要执行跨项目依赖需要指定项目名。
+
+```
+// 跨项目依赖, task F 依赖 root.subproject03 下的 task subproject03Hello
+task F {  
+    dependsOn = [':root:subproject03:subproject03Hello']  
+    doLast {  
+        println("taskF")  
+    }  
+}
+```
+
+**依赖多个 Task**
+
+一个 Task 依赖于多个 Task 时，被依赖的 Task 之间如果没有依赖关系，那么它们之间的执行顺序是随机的，并无影响。
+
+Task 被多个依赖时，该 Task 只会执行一次，不会执行多次。

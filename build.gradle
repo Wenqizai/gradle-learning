@@ -43,3 +43,83 @@ test {
     include('com/wenqi/**')
     exclude('com/wenqi/none/**')
 }
+
+
+task task1 {
+    // 任务配置段: 在配置阶段执行
+    println("Configure task1 ....")
+    // 任务的行为: 在执行阶段执行, doFirst 在 doLast 之前执行
+    doFirst {
+        println "task1 doFirst"
+    }
+    doLast {
+        println "task1 doLast"
+    }
+}
+
+task1.doFirst {
+    println "task1 doFirst outer ..."
+}
+
+task1.doLast {
+    println "task1 doLast outer ..."
+}
+
+
+def map = new HashMap<String, Object>();
+// action 属性可以设置为闭包, 设置 task 自身行为
+map.put("action", { println "task action ..." })
+task(map, "task2") {
+    // 任务配置段: 在配置阶段执行
+    println("Configure task2 ....")
+    // 任务的行为: 在执行阶段执行, doFirst 在 doLast 之前执行
+    doFirst {
+        println "task2 doFirst"
+    }
+    doLast {
+        println "task2 doLast"
+    }
+}
+
+task A {
+    doLast {
+        println("taskA")
+    }
+}
+
+task B {
+    doLast {
+        println("taskB")
+    }
+}
+
+// 参数依赖
+task C(dependsOn: ['A', 'B']) {
+    doLast {
+        println("taskC")
+    }
+}
+
+// 内部依赖
+task D {
+    dependsOn = ['A', 'B']
+    doLast {
+        println("taskD")
+    }
+}
+
+// 外部依赖
+task E {
+    doLast {
+        println("taskE")
+    }
+}
+E.dependsOn = ['A', 'B']
+
+// 跨项目依赖
+task F {
+    dependsOn = [':root:subproject03:subproject03Hello']
+    doLast {
+        println("taskF")
+    }
+}
