@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'war'
 }
 
 group = 'com.wenqi'
@@ -12,8 +13,33 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    implementation('org.springframework:spring-beans:5.2.25.RELEASE')
+    implementation('org.springframework:spring-web:5.2.25.RELEASE')
+    implementation('org.springframework:spring-webmvc:5.2.25.RELEASE')
+    implementation('org.springframework:spring-jdbc:5.2.25.RELEASE')
+    implementation('org.springframework:spring-tx:5.2.25.RELEASE')
+    implementation('org.springframework:spring-test:5.2.25.RELEASE')
+    implementation('org.springframework:spring-jdbc:5.2.25.RELEASE')
+
+    implementation('mysql:mysql-connector-java:8.0.30')
+    implementation('com.alibaba:druid:1.2.15')
+
+    implementation('com.fasterxml.jackson.core:jackson-databind:2.13.4')
+    implementation('com.fasterxml.jackson.core:jackson-core:2.13.4')
+    implementation('com.fasterxml.jackson.core:jackson-annotations:2.13.4')
+
+    implementation('org.aspectj:aspectjweaver:1.9.9.1')
+    implementation('log4j:log4j:1.2.17')
+    implementation('org.slf4j:slf4j-log4j12:1.7.36')
+    implementation('jstl:jstl:1.2')
+    compileOnly('javax.servlet:javax.servlet-api:4.0.1')
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
 }
 
 test {
+    enabled(true)
     useJUnitPlatform()
+    include('com/wenqi/**')
+    exclude('com/wenqi/none/**')
 }

@@ -142,3 +142,37 @@ import java.util.*
 ```
 { [closureParameters ->] statements}
 ```
+
+# 测试支持
+
+Gradle 测试任务自动检测并执行测试集中的所有单元测试，测试执行完成后会生成一个报告。支持 JUint 和 TestNG 测试。
+
+⚠️upload failed, check dev console
+![[Gradle测试默认读取和报告输出目录.png]]
+
+**不执行测试**
+
+1. `build.gradle` 文件添加指令
+
+```
+// 不执行测试  
+test {  
+    enabled(false)  
+    useJUnitPlatform()  
+}
+
+// 只执行指定/排除包的测试
+test {  
+    enabled(true)  
+    useJUnitPlatform()  
+    include('com/wenqi/**')  
+    exclude('com/wenqi/none/**')  
+}
+```
+
+2. 指令指定跳过 
+
+```
+gradle build -x test
+gradle build --exclude-task test
+```
