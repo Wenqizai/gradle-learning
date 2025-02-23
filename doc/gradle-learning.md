@@ -347,5 +347,10 @@ Gradle 依赖冲突时，默认使用高版本的 jar 包。
 | Upload                   | 将 Configuration 的构建上传到一组存储库                   |
 | War                      | 生成 war 文件                                     |
 | Zip                      | 打包 zip 文件                                     |
-## Task 执行顺序
+# 文件
 
+Gradle 的文件操作相当于调用 Java File 类操作。
+
+**文件树**
+
+通过 `fileTree("src")` 可以获取目录下的文件树，可以进行遍历操作。

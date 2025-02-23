@@ -145,3 +145,13 @@ task("cleanBuild", type: Delete) {
     delete rootProject.buildDir
     delete buildDir
 }
+
+// 创建文件
+File configFile = file('src/conf.xml')
+configFile.createNewFile();
+
+// 文件树
+ConfigurableFileTree configurableFileTree = fileTree("src");
+configurableFileTree.include {"**/*.groovy"}.forEach {item -> {
+    println(item)
+}}
