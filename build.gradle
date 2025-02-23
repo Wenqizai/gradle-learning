@@ -35,6 +35,31 @@ dependencies {
     implementation('jstl:jstl:1.2')
     compileOnly('javax.servlet:javax.servlet-api:4.0.1')
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+
+    // 依赖方式, 本地依赖, 文件集合或文件树
+    implementation files('lib/ojdbc8.jar', 'lib/aspectjweaver-1.9.9.1.jar') // 依赖本地 jar
+    implementation fileTree(dir: 'lib', includes: ['*.jar'])
+
+    // 项目依赖, subproject01 需要在 settings.gradle 中配置 include
+    implementation project(':root:subproject01')
+
+    // 直接依赖 组名:模块名:版本号
+    implementation('org.slf4j:slf4j-log4j12:1.7.36')  // short
+    implementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.36'  // full
+
+    implementation('org.hibernate:hibernate-core:5.6.15.Final') {
+        transitive = false
+        exclude(group: 'org.slf4j')
+    }
+
+    // 强制使用指定版本
+    implementation('org.slf4j:slf4j-log4j12:1.7.36!!')
+    implementation('org.slf4j:slf4j-log4j12:1.4.0') {
+        version {
+            strictly('1.7.36')
+        }
+    }
+
 }
 
 test {

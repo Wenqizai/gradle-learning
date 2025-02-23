@@ -354,3 +354,74 @@ Gradle 的文件操作相当于调用 Java File 类操作。
 **文件树**
 
 通过 `fileTree("src")` 可以获取目录下的文件树，可以进行遍历操作。
+
+# 依赖 
+
+**依赖方式**
+
+1. 本地依赖：依赖本地某个 Jar 包，具体可通过文件集合、文件树方式指定；
+2. 项目依赖：依赖某个 Project；
+3. 直接依赖：依赖的类型、依赖的组名、依赖的名称、依赖的版本号。
+
+**依赖类型**
+
+类似 Maven 的 scope 标签，具体如下：
+
+| 类型                   | 作用                                                |
+| -------------------- | ------------------------------------------------- |
+| `compileOnly`        | Java 插件提供，编译期运行，不需要打包                             |
+| `runtimeOnly`        | Java 插件提供，运行期有效，编译时不需要，取代 runtime                 |
+| `implementation`     | Java 插件提供，针对源码目录 `src/main`，在编译和运行时有效，取代 compile  |
+| `testCompileOnly`    | Java 插件提供，用于编译测试的依赖项，运行时不需要                       |
+| `testRuntimeOnly`    | Java 插件提供，在测试运行时需要，而不是测试编译时                       |
+| `testImplementation` | Java 插件提供，针对测试源码目录 `src/main`                     |
+| `provideCompile`     | War 插件提供，编译、测试阶段代码依赖该 jar 包，无需打进 war 包中           |
+| `compile`            | gradle 7 已经移除                                     |
+| `runtime`            | gradle 7 已经移除                                     |
+| `api`                | Java-library 插件支持，依赖项可以传递性给使用者，用于编译和运行，取代 compile |
+| `compileOnlyApi`     | Java-library 插件支持，在声明模块和使用者在编译时需要的依赖项，运行时不需要      |
+
+## api&implementation
+
+`api` 和 `implementation ` 都是用于编译和运行，主要区别是不同项目的可见性。
+
+**api**
+
+1. 可见性：使用是 api 声明的依赖在当前项目和所有依赖该项目的其他项目都可见；
+2. 传播性：本项目 api 声明的依赖，可传递到依赖该项目的其他项目；
+
+场景：适用于公共 API 的依赖，方便其他项目访问。当 api 依赖变更时，依赖的相关项目都要重新加载，运行，编译和运行都较慢。
+
+**implementation** 
+
+1. 可见性：implementation 声明的依赖仅在本项目可见，其他项目不可见；
+2. 传播性：implementation 声明的依赖不会传播到其他项目中。
+
+场景：适用于内部实现细节的依赖，不传递到其他项目。正常情况使用 implementation 声明依赖，加快构建速度。
+
+合理利用 `api ` 和 ` implementation` 减少项目中的依赖。
+
+## 依赖冲突 
+
+Gradle 处理依赖冲突时，默认采用最新版本的 jar 包。除此之外，我们也可以通过其他方式来处理 jar 包冲突。
+
+1. 利用 exclude 来排除指定的版本的 jar 包；
+2. 仅引用当前 jar 包，不依赖其他 jar 包，可设置 `transitive(false)`；
+3. 强制使用该 jar 包，加 `!！`
+
+
+```
+implementation('org.hibernate:hibernate-core:5.6.15.Final') {  
+    transitive = false  
+    exclude(group: 'org.slf4j')  
+}
+
+// 强制使用指定版本  
+implementation('org.slf4j:slf4j-log4j12:1.7.36!!')  
+implementation('org.slf4j:slf4j-log4j12:1.4.0') {  
+    version {  
+        strictly('1.7.36')  
+    }  
+}
+```
+
