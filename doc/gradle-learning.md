@@ -273,3 +273,40 @@ task F {
 一个 Task 依赖于多个 Task 时，被依赖的 Task 之间如果没有依赖关系，那么它们之间的执行顺序是随机的，并无影响。
 
 Task 被多个依赖时，该 Task 只会执行一次，不会执行多次。
+
+## Task 执行 
+
+Task 执行语法：`gradle [taskName...] [--option-name...]`。
+
+1.  常见执行的任务：
+
+```
+gradle build: 构建项目, 编译, 测试, 打包等操作'
+
+gradle run: 运行一个服务, 需要 application 插件支持, 并且指定了主启动类才能运行 
+
+gradle clean: 清理当前项目的 build 目录
+
+gradle init: 初始化 gradle 项目
+
+gradle wrapper: 生成 wrapper 文件夹
+```
+
+2. 项目报告相关的
+
+```
+gradle projects 列出项目的层次结构
+gralde tasks (--all) 列出当前项目已分配给任务组的哪些任务
+gralde tasks --group="someGroup" 列出指定分组的任务信息
+gradle help --task someTask 显示某个任务的详细信息
+gralde dependencies 查看项目的依赖
+gradle properties 
+
+gradle init --type pom 将 maven 项目转换为 gralde 项目
+```
+
+Gradle 依赖冲突时，默认使用高版本的 jar 包。
+
+**Gradle 任务指令依赖**
+
+![|775](https://docs.gradle.org/current/userguide/img/javaPluginTasks.png)
