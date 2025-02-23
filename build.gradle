@@ -123,3 +123,25 @@ task F {
         println("taskF")
     }
 }
+
+// 任务的定义
+tasks.create("taskG") {
+    println("taskG")
+}
+
+tasks.register("taskH") { // register 方法时延迟执行的, 只有 task 被使用时才执行
+    println("taskH")
+}
+
+task(group: "wenqi", description: "taskI", "taskI")
+
+task("taskJ") {
+    group = "wenqi"
+    description = "taskJ"
+}
+
+task("cleanBuild", type: Delete) {
+    group = "wenqi"
+    delete rootProject.buildDir
+    delete buildDir
+}

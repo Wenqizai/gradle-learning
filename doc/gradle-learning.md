@@ -310,3 +310,42 @@ Gradle 依赖冲突时，默认使用高版本的 jar 包。
 **Gradle 任务指令依赖**
 
 ![|775](https://docs.gradle.org/current/userguide/img/javaPluginTasks.png)
+
+## Task 定义
+
+`tasks.create` 和 `tasks.register`，其中 `tasks.register` 是延迟执行的。
+
+**属性定义**
+
+| 属性          | 描述                      | 默认值         |
+| ----------- | ----------------------- | ----------- |
+| type        | 基于一个存在的 task 来创建，类似于继承  | DefaultTask |
+| overwrite   | 和 type 配合使用，是否重写 task   | False       |
+| denpendsOn  | 指定 task 的依赖             | []          |
+| action      | 添加 Task 的 action 或者一个闭包 | Null        |
+| description | 任务描述                    | Null        |
+| group       | 配置任务分组                  | Null        |
+
+## Task 类型 
+
+官方提供了一些 Task 类型，我们在创建 Task 时可以指定 Task 类型，就可以复用这些 Task 的 API，无需重复编码。
+
+| 任务类型                     | 作用                                            |
+| ------------------------ | --------------------------------------------- |
+| Delete                   | 删除文件/目录                                       |
+| Copy                     | 复制文件，可以重命名                                    |
+| CreateStarScripts        | 创建启动脚本                                        |
+| Exec                     | 执行命令行进程                                       |
+| GenerateMavenPom         | 生成 Maven 模块 POM 文件                            |
+| GradleBuild              | 执行 Gradle 构建                                  |
+| Jar                      | 生成 Jar 文件                                     |
+| JavaCompile              | 编译                                            |
+| Javadoc                  | 生成文档                                          |
+| PublishToMavenRepository | 将 MavenPublication 发布到 mavenaritifactrepostal |
+| Tar                      | 生成 Tar 文件                                     |
+| Test                     | 执行 Test                                       |
+| Upload                   | 将 Configuration 的构建上传到一组存储库                   |
+| War                      | 生成 war 文件                                     |
+| Zip                      | 打包 zip 文件                                     |
+## Task 执行顺序
+
