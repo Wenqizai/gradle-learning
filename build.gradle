@@ -1,3 +1,4 @@
+// plugins dsl
 plugins {
     id 'java'
     id 'war'
@@ -180,3 +181,32 @@ ConfigurableFileTree configurableFileTree = fileTree("src");
 configurableFileTree.include {"**/*.groovy"}.forEach {item -> {
     println(item)
 }}
+
+// 插件
+apply from: 'script/version.gradle'
+task taskVersion {
+    doLast {
+        println("""company: ${company}, jdkVersion: ${cfgs.compileSdkVersion}, spring: ${spirng.version}""")
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

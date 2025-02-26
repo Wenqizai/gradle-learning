@@ -424,4 +424,58 @@ implementation('org.slf4j:slf4j-log4j12:1.4.0') {
     }  
 }
 ```
+# 插件
 
+插件分类：
+
+1. 脚本插件
+2. 二进制插件（对象插件）
+	1. 内部插件
+	2. 第三方插件
+	3. 自定义插件
+
+## 脚本插件
+
+脚本插件本质就是一个脚本，通过 apply from 将脚本加载进来就可以。可以是本地脚本，也可以是网络上的脚本。
+
+```
+apply from: "script.gradle"
+```
+
+脚本插件好处是，模块化，职责单一，便于管理脚本。
+
+## 二进制/对象插件
+
+二进制插件就是实现了 `org.gralde.api.Plugin`, 每个 Java gradle 插件都有一个 plugin id。
+
+⚠️upload failed, check dev console
+![[image-20250226232526524.png]]
+
+**内部插件**
+
+> 引用方式
+
+- `apply` 方式 
+
+写法：`apply: map` ，其中 key: plugin   value: 插件 id，插件全类名，插件的简类名
+
+```
+apply plugin: 'java'
+
+apply {
+  plugin 'java'
+}
+```
+
+- `plugins dsl` 
+
+```
+plugins {  
+    id 'java'  
+    id 'war'  
+}
+```
+
+**第三方插件**
+
+第三方插件一般都是下载完第三方依赖，可以通过全类名或者简类名引用。

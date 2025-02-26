@@ -1,0 +1,9 @@
+ext {
+    company = "wenqi"
+    cfgs = [
+            compileSdkVersion: JavaVersion.VERSION_1_8
+    ]
+    spirng = [
+            version: "5.2.25.RELEASE"
+    ]
+}
