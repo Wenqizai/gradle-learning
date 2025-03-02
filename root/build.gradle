@@ -1,7 +1,19 @@
+buildscript {
+    repositories {
+        maven {url "$rootDir/lib/releases"}
+    }
+
+    dependencies {
+        classpath 'com.wenqi:library:1.0-SNAPSHOT'
+    }
+}
+
 plugins {
     id 'java'
     id 'application'
 }
+
+apply plugin : 'com.wenqi.plugin'
 
 group = 'com.wenqi'
 version = '1.0-SNAPSHOT'

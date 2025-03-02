@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'groovy'
+    id 'maven-publish'
+}
+
+group = 'com.wenqi'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven{ url 'https://mirrors.cloud.tencent.com/gradle/'}
+    maven{ url 'https://mirrors.cloud.tencent.com/nexus/repository/maven-public/'}
+    google()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    implementation gradleApi()
+    implementation localGroovy()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// 项目入口设置为 src/main/groovy
+sourceSets {
+    main.groovy.srcDirs += 'src/main/groovy'
+}

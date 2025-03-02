@@ -1,0 +1,13 @@
+class GreetingPlugin implements Plugin<Project> {
+    void apply(Project project) {
+        project.task('greeting') {
+            group = 'wenqi'
+            doLast {
+                println 'Hello from plugin'
+            }
+        }
+    }
+}
+
+
+apply plugin: GreetingPlugin

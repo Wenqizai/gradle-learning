@@ -190,10 +190,10 @@ task taskVersion {
     }
 }
 
+apply from: 'script/plugins.gradle'
 
-
-
-
+// properties 名字
+apply plugin : 'com.wenqi.plugin'
 
 
 

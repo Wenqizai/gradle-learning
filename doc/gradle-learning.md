@@ -479,3 +479,42 @@ plugins {
 **第三方插件**
 
 第三方插件一般都是下载完第三方依赖，可以通过全类名或者简类名引用。
+
+## 自定义插件 
+
+用户自定义 插件的局限性在本项目才能使用，其他项目不能使用。因此一般使用自定义插件是通过 `buildSrc` 项目。
+
+### BuildSrc 项目
+
+BuildSrc 是 Gradle 默认的插件目录，编译 Gradle 时回自动识别这个目录，将其中的代码编译为插件。该项目定义的插件可以被所有的项目引用。
+
+#### 当前工程使用
+
+步骤：
+
+1. 新建 moudle `buildSrc`
+2. 编写源码入口 `src/groovy/com/wenqi`
+3. 编写 `build.gradle`，完成依赖定义
+4. 编写插件：`src.groovy.com.wenqi.Text`
+5. 编写资源目录：`src/resources/META-INF/gradle-plugins`
+6. 编写 properties 文件：`com.wenqi.plugin.properties`
+7. 定义构建的项目插件：`implementation-class=com.wenqi.Text`
+8. 其他项目 `build.gradle` 引用该插件：`apply plugin : 'com.wenqi.plugin'`
+
+#### 其他工程使用 
+
+将 buildSrc 目录发布到 maven 仓库中，其他工程就可以使用该自定义插件。
+
+其他工程引用该插件时，可以通过 buildScript：
+
+```
+buildscript {  
+    repositories {  
+        maven {url "$rootDir/lib/releases"}  
+    }  
+  
+    dependencies {  
+        classpath 'com.wenqi:library:1.0-SNAPSHOT'  
+    }  
+}
+```

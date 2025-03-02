@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.wenqi</groupId>
+  <artifactId>library</artifactId>
+  <versioning>
+    <lastUpdated>20250302041319</lastUpdated>
+    <snapshot>
+      <timestamp>20250302.041319</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.0-20250302.041319-1</value>
+        <updated>20250302041319</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>module</extension>
+        <value>1.0-20250302.041319-1</value>
+        <updated>20250302041319</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>1.0-20250302.041319-1</value>
+        <updated>20250302041319</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+  <version>1.0-SNAPSHOT</version>
+</metadata>

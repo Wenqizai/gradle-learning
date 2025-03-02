@@ -1,4 +1,5 @@
 rootProject.name = 'gradle-learning'
+include 'publish'
 include 'root'
 include 'root:subproject01'
 findProject(':root:subproject01')?.name = 'subproject01'
