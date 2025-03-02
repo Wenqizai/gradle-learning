@@ -7,4 +7,5 @@ include 'root:subproject02'
 findProject(':root:subproject02')?.name = 'subproject02'
 include 'root:subproject03'
 findProject(':root:subproject03')?.name = 'subproject03'
+include 'boot'
 

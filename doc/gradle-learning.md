@@ -565,9 +565,13 @@ publishing {
 }
 ```
 
+# 生命周期 Hook 
 
+初始化 -> 配置  -> 执行
 
+`settings.gradle` -> root build script -> sub build script -> task execute
 
+应用：借助钩子函数可以用来统计项目构建各个阶段的耗时。
 
 
 
