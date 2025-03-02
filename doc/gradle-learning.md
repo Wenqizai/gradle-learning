@@ -530,6 +530,44 @@ buildscript {
 [史上最全Android build.gradle配置详解，你懂的！Android Studio是采用gradle来构建项 - 掘金](https://juejin.cn/post/6844903933584883720)
 
 
+# 项目发布 
+
+项目发布执行步骤：引入发布插件、设置发布代码、执行发布命令。
+
+- 引入发布插件 
+
+```
+plugins {  
+    id 'maven-publish'  
+}
+```
+
+- 设置发布代码 
+
+```
+publishing {
+    publications {
+        myLibrary(MavenPublication) {
+            groupId = 'com.wenqi'
+            artifactId = 'library'
+            version = '1.0-SNAPSHOT'
+            from components.java // 发布 jar 包
+//            from components.web  // 发布 war 包
+        }
+    }
+    repositories {
+        maven {
+            name = "myRepo"
+            url = "$rootDir/lib/releases"
+        }
+    }
+
+}
+```
+
+
+
+
 
 
 

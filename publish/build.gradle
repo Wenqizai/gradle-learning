@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'groovy'
     id 'maven-publish'
+    id 'war'
 }
 
 group = 'com.wenqi'
@@ -38,10 +39,11 @@ sourceSets {
 publishing {
     publications {
         myLibrary(MavenPublication) {
-            from components.java
             groupId = 'com.wenqi'
             artifactId = 'library'
             version = '1.0-SNAPSHOT'
+            from components.java // 发布 jar 包
+//            from components.web  // 发布 war 包
         }
     }
     repositories {
