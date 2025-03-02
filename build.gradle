@@ -195,8 +195,17 @@ apply from: 'script/plugins.gradle'
 // properties 名字
 apply plugin : 'com.wenqi.plugin'
 
+allprojects {
+    tasks.create("allProjects-hello") {
+        println("allprojects => project name is $project.name")
+    }
+}
 
-
+subprojects {
+    tasks.create("subprojects-hello") {
+        println("subprojects => project name is $project.name")
+    }
+}
 
 
 

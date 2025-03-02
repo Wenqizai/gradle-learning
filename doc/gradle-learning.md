@@ -518,3 +518,28 @@ buildscript {
     }  
 }
 ```
+
+
+# build.gradle
+
+`build.gradle` 文件本质上是一个构建脚本文件，支持 Java 和 Groovy 语言。
+
+- 每个 project 都有一个 `build.gradle` 文件，是项目构建入口，可配置版本、插件、依赖库等信息；
+- 每个 `build.gradle` 可以获取到父工程的信息，也可以获取到子工程的信息。因此可以在 root 工程做统一的配置。
+
+[史上最全Android build.gradle配置详解，你懂的！Android Studio是采用gradle来构建项 - 掘金](https://juejin.cn/post/6844903933584883720)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
